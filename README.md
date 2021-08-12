@@ -5,13 +5,13 @@ Este proyecto frontend es un tablero de la situación covid en México, consume 
 Para correr el proyecto solo es necesario descargar o clonar el repositorio y abrir en el navegador el index.html
 
 ## Previsualización
-Previsualización en desktop
+* __Previsualización en desktop__
 ![Imagen del proyecto desde el escritorio](Desktop-Preview.JPG)
 
-Previsualización en celular
+* __Previsualización en celular__
 ![Imagen del proyecto desde el escritorio](Phone-Preview.JPG)
 
-Previsualización en tablet
+* __Previsualización en tablet__
 ![Imagen del proyecto desde el escritorio](Tablet-Preview.JPG)
 
 ## Creditos
