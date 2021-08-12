@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Covid 19 API</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+  <link rel="shortcut icon" type="image/jpg" href="./icon-covid.png"/>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center mt-5">Tablero Covid 19 en México al día</h1>
+    <br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Casos confirmados totales</th>
+          <th>Defunciones confirmadas totales</th>
+          <th>Casos recuperados totales</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="data">
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <button onclick="refresh()" class="btn btn-danger btn-block">
+      Refrescar info
+    </button>
+  </div>
+  <footer>
+    <p id="dateData" class="text-center">Datos actualizados al </p>
+  </footer>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  init()
+  function init(){
+      const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://coronavirus-smartable.p.rapidapi.com/stats/v1/MX/",
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-key": "a388425576msh258b9a408b86ed5p1c1fb1jsna0acc09b25b0",
+          "x-rapidapi-host": "coronavirus-smartable.p.rapidapi.com"
+        }
+      };
+      var data = ''
+      $.ajax(settings).done(function (response) {
+        data = `
+        <td>${response.stats.totalConfirmedCases}</td>
+        <td>${response.stats.totalDeaths}</td>
+        <td>${response.stats.totalRecoveredCases}</td>
+        `
+        $("#data").html(data)
+        $("#dateData").append(response.stats.history[response.stats.history.length - 1].date)
+      });
+  }
+
+  function refresh(){
+    clearData()
+    init()
+  }
+
+  function clearData(){
+    $('#data').empty()
+  }
+</script>
+</html>
